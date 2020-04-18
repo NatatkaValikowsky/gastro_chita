@@ -33,14 +33,17 @@ function initProject() {
 
         contacts = [
             {
+                name: 'phone',
                 icon: "fa fa-phone",
                 info: "+7 914 474 15 29"
             },
             {
+                name: 'email',
                 icon: "fa fa-envelope",
                 info: "admin@gastro-chita.ru",
             },
             {
+                name: 'instagram',
                 icon: "fa fa-instagram",
                 info: "gastro_chita"
             },
@@ -142,7 +145,29 @@ function initProject() {
         autoplay: true
     });
 
-    $(".tours-slider").owlCarousel({
+    var tours = [
+        {
+            img: 'img/tours/001.jpg',
+            title: 'Гастро-прогулка "Истории со вкусом"'
+        },
+        {
+            img: 'img/tours/002.jpg',
+            title: 'Гастро-прогулка "Рождественская прогулка"'
+        },
+        {
+            img: 'img/tours/003.jpg',
+            title: 'Гастро-прогулка "Коктейльный променад"'
+        }
+    ];
+
+    tursVue = new Vue({
+        el: '.tours-slider',
+        data: {
+            items: tours
+        }
+    });
+
+    var tourSlider = $(".tours-slider").owlCarousel({
         items: 1,
         loop: true, //Зацикливаем слайдер
         margin: 10, //Отступ от картино если выводите больше 1
@@ -150,6 +175,8 @@ function initProject() {
         autoplay: false, //Автозапуск слайдера
         smartSpeed: 2000, //Время движения слайда
         autoplayTimeout: 4000, //Время смены слайда
+        center:true
+
     });
 
     var photoGallery = new Gallery({
@@ -170,5 +197,15 @@ function initProject() {
                 topMenu.removeClass('active');
             }
         }
+    });
+
+    var arrows = $('.owl-prev, .owl-next');
+
+    arrows.click(function () {
+        arrows.css('opacity', 0.0);
+
+        setTimeout(function () {
+            arrows.css('opacity', 1.0);
+        }, 1500);
     });
 }

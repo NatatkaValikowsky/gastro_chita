@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Гастрономические маршруты по Забайкалью для взрослых и детей</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=1">
     <link rel="stylesheet" href="src/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -27,7 +27,7 @@
 
             <div class="nav-contacts">
 
-                <li v-for="item in items">
+                <li v-for="item in items" v-bind:class="[item.name]">
                     <i v-bind:class="[item.icon]" aria-hidden="true"></i>
                     <span class="info">{{item.info}}</span>
                 </li>
@@ -47,11 +47,10 @@
 
     <div class="title">Сытым вход запрещен</div>
     <div class="descr">
-        Гастрономические маршруты по Забайкалью
-        для взрослых и детей
+        Гастрономические экскурсии для жителей и гостей Забайкалья
     </div>
 
-    <div class="button">Выбрать тур</div>
+    <div class="button select_tour">Выбрать тур</div>
 
     <i class="fa fa-arrow-circle-down arrow" aria-hidden="true"></i>
 </section>
@@ -127,8 +126,9 @@
         </div>
 
         <div class="owl-carousel tours-slider">
-            <div class="item">
-                <div class="tour-block" style="background-image: url(img/tours/001.jpg);">
+
+            <div class="item" v-for="item in items">
+                <div class="tour-block" v-bind:style="{ backgroundImage: 'url(' + item.img + ')' }">
                     <div class="wrapper">
                         <div class="content">
                             <div class="tour-tag">
@@ -137,41 +137,7 @@
                                     INSTAGRAM</a>
                             </div>
                             <h3>
-                                Гастро-прогулка "Истории со вкусом"
-                            </h3>
-                            <div class="button">ПОДРОБНЕЕ</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="tour-block" style="background-image: url(img/tours/002.jpg);">
-                    <div class="wrapper">
-                        <div class="content">
-                            <div class="tour-tag">
-                                <img src="img/instagram.svg" alt="иконка инстаграм">
-                                <a href="https://www.instagram.com/explore/tags/гастрочита/"> СМОТРЕТЬ ФОТО В
-                                    INSTAGRAM</a>
-                            </div>
-                            <h3>
-                                Гастро-прогулка "Рождественская прогулка"
-                            </h3>
-                            <div class="button">ПОДРОБНЕЕ</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="tour-block" style="background-image: url(img/tours/003.jpg);">
-                    <div class="wrapper">
-                        <div class="content">
-                            <div class="tour-tag">
-                                <img src="img/instagram.svg" alt="иконка инстаграм">
-                                <a href="https://www.instagram.com/explore/tags/гастрочита/"> СМОТРЕТЬ ФОТО В
-                                    INSTAGRAM</a>
-                            </div>
-                            <h3>
-                                Гастро-прогулка "Коктейльный променад"
+                                {{item.title}}
                             </h3>
                             <div class="button">ПОДРОБНЕЕ</div>
                         </div>
